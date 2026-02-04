@@ -1,0 +1,5 @@
+{
+  "name": "Daily Report Automator",
+  "description": "A streamlined daily work report generator with task time tracking, n8n webhook integration, and auto-formatted HTML email output.",
+  "requestFramePermissions": []
+}
