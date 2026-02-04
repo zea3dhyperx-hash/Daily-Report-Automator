@@ -40,8 +40,9 @@ const Auth: React.FC<AuthProps> = ({ onAuthSuccess }) => {
           });
           onAuthSuccess(user);
         }
-      } catch (err) {
-        alert('An error occurred during authentication.');
+      } catch (err: any) {
+        console.error('Auth error', err);
+        alert(err?.message || 'An error occurred during authentication.');
       } finally {
         setIsLoading(false);
       }

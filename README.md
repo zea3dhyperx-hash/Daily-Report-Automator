@@ -1,20 +1,29 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Daily Report Automator (Mongo-backed)
 
-# Run and deploy your AI Studio app
+This repo now has a split frontend (Vite + React) and backend (Express + MongoDB) so reports, settings, colors, and editor data are stored in MongoDB instead of browser localStorage.
 
-This contains everything you need to run your app locally.
+## Project structure
+- `frontend/` – Vite React app (Daily Report UI)
+- `backend/` – Express API + Mongoose models for users and reports
 
-View your app in AI Studio: https://ai.studio/apps/drive/1m6LHJpCZZv7CtQ-hJKR_Gfgimu2N53GB
+## Backend setup
+1. `cd backend`
+2. `cp .env.example .env` (the provided Mongo URI and port are prefilled; change if needed)
+3. `npm install`
+4. `npm start` (defaults to `http://localhost:4000`)
 
-## Run Locally
+## Frontend setup
+1. `cd frontend`
+2. Update `.env.local` with your keys and API base (defaults to `http://localhost:4000/api`)
+3. `npm install`
+4. `npm run dev`
 
-**Prerequisites:**  Node.js
+## API overview
+- `POST /api/auth/signup` (email-only auth)
+- `POST /api/auth/login`
+- `PUT /api/auth/user/:id` (update theme, recipients, saved colors, etc.)
+- `GET /api/reports/:userId`
+- `POST /api/reports` (create/update; enforces 30 reports per user)
+- `DELETE /api/reports/:id`
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+All report fields (tasks, planning tasks, colors, pre/post text, etc.) persist to MongoDB.
